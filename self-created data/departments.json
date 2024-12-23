@@ -2,6 +2,7 @@
   {
     "_id": { "$oid": "64b7f9b7fc13ae6004000001" },
     "name": "General Dentistry",
+    "costPerService": 100,
     "employees": [
       { "$oid": "64b7f9b7fc13ae6004000002" },
       { "$oid": "64b7f9b7fc13ae6004000003" },
@@ -11,6 +12,7 @@
   {
     "_id": { "$oid": "64b7f9b7fc13ae6004000005" },
     "name": "Pediatric Dentistry",
+    "costPerService": 150,
     "employees": [
       { "$oid": "64b7f9b7fc13ae6004000006" },
       { "$oid": "64b7f9b7fc13ae6004000007" }
@@ -19,6 +21,7 @@
   {
     "_id": { "$oid": "64b7f9b7fc13ae6004000008" },
     "name": "Restorative Dentistry",
+    "costPerService": 800,
     "employees": [
       { "$oid": "64b7f9b7fc13ae6004000009" },
       { "$oid": "64b7f9b7fc13ae600400000a" }
@@ -27,11 +30,13 @@
   {
     "_id": { "$oid": "64b7f9b7fc13ae600400000b" },
     "name": "Surgery",
+    "costPerService": 2000,
     "employees": [{ "$oid": "64b7f9b7fc13ae600400000c" }]
   },
   {
     "_id": { "$oid": "64b7f9b7fc13ae600400000d" },
     "name": "Orthodontics",
+    "costPerService": 4000,
     "employees": [
       { "$oid": "64b7f9b7fc13ae600400000e" },
       { "$oid": "64b7f9b7fc13ae6004000009" }

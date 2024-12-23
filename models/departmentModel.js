@@ -5,6 +5,10 @@ const departmentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  costPerService: {
+    type: Number,
+    required: true,
+  },
   employees: [
     {
       type: mongoose.SchemaTypes.ObjectId,
