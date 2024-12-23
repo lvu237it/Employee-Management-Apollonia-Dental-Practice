@@ -1,0 +1,47 @@
+[
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae6004000002" },
+    "name": "Alfred",
+    "surname": "Christensen"
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae6004000003" },
+    "name": "John",
+    "surname": "Dudley"
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae6004000004" },
+    "name": "Janet",
+    "surname": "Doe"
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae6004000006" },
+    "name": "Francisco",
+    "surname": "Willard"
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae6004000007" },
+    "name": "Sarah",
+    "surname": "Alvarez"
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae6004000009" },
+    "name": "Lisa",
+    "surname": "Harris"
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae600400000a" },
+    "name": "Danny",
+    "surname": "Perez"
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae600400000c" },
+    "name": "Constance",
+    "surname": "Smith"
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae600400000e" },
+    "name": "Leslie",
+    "surname": "Roche"
+  }
+]

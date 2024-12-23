@@ -1,0 +1,40 @@
+[
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae6004000001" },
+    "name": "General Dentistry",
+    "employees": [
+      { "$oid": "64b7f9b7fc13ae6004000002" },
+      { "$oid": "64b7f9b7fc13ae6004000003" },
+      { "$oid": "64b7f9b7fc13ae6004000004" }
+    ]
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae6004000005" },
+    "name": "Pediatric Dentistry",
+    "employees": [
+      { "$oid": "64b7f9b7fc13ae6004000006" },
+      { "$oid": "64b7f9b7fc13ae6004000007" }
+    ]
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae6004000008" },
+    "name": "Restorative Dentistry",
+    "employees": [
+      { "$oid": "64b7f9b7fc13ae6004000009" },
+      { "$oid": "64b7f9b7fc13ae600400000a" }
+    ]
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae600400000b" },
+    "name": "Surgery",
+    "employees": [{ "$oid": "64b7f9b7fc13ae600400000c" }]
+  },
+  {
+    "_id": { "$oid": "64b7f9b7fc13ae600400000d" },
+    "name": "Orthodontics",
+    "employees": [
+      { "$oid": "64b7f9b7fc13ae600400000e" },
+      { "$oid": "64b7f9b7fc13ae6004000009" }
+    ]
+  }
+]
