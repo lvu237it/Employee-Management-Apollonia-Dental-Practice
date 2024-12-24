@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const morgan = require('morgan');
 const AppError = require('./utils/appError');
+const connectToDatabase = require('./database/connection');
 
 // Load environment variables from .env file dotenv.config();
 dotenv.config();
@@ -29,9 +30,10 @@ if (process.env.NODE_ENV === 'production') {
 //Import routers
 
 //Connect to database
+connectToDatabase();
 
 //Routing handlers
-app.use('/', (req, res) => res.send('anh trai say bye'));
+// app.use('/', (req, res) => res.send('anh trai say bye'));
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
