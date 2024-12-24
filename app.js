@@ -3,11 +3,14 @@ const dotenv = require('dotenv');
 const morgan = require('morgan');
 const AppError = require('./utils/appError');
 const connectToDatabase = require('./database/connection');
+const path = require('path');
 
 // Load environment variables from .env file dotenv.config();
 dotenv.config();
 
 const app = express();
+const employeeRouter = require('./routes/employeeRoute');
+const departmentRouter = require('./routes/departmentRoute');
 
 //Middleware & Static files
 app.use(express.urlencoded({ extended: true })); //this will help to get submitted data of form in req.body obj
@@ -28,12 +31,35 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 //Import routers
+app.use('/employees', employeeRouter);
+app.use('/departments', departmentRouter);
+
+//Views
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
+// app.use(express.static(path.join(__dirname, './public')));
 
 //Connect to database
 connectToDatabase();
 
 //Routing handlers
-// app.use('/', (req, res) => res.send('anh trai say bye'));
+app.use('/home', (req, res) => res.render('home'));
+
+app.get('/employee-management', (req, res) =>
+  res.render('employee-management')
+);
+
+app.get('/department-management', (req, res) =>
+  res.render('department-management')
+);
+
+app.get('/customer-management', (req, res) =>
+  res.render('customer-management')
+);
+
+app.get('/appointment-management', (req, res) =>
+  res.render('appointment-management')
+);
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

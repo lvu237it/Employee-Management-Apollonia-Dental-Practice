@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Apollonia Dental Management</title>
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <div id="content-wrapped-id" class="content-wrapped">
+        <div class="menu-bar-option" id="menu-bar-option-id">
+          <div id="logo-Apollonia">Apollonia</div>
+          <ul class="menu-bar-option-ul">
+            <li onclick="homePage()">Home</li>
+            <li onclick="loadContent('employee-management')">
+              Employee management
+            </li>
+            <li onclick="loadContent('department-management')">
+              Department management
+            </li>
+            <li onclick="loadContent('customer-management')">
+              Customer management
+            </li>
+            <li onclick="loadContent('appointment-management')">
+              Appointment management
+            </li>
+          </ul>
+        </div>
+        <div class="main-wrapped">
+          <div class="header">
+            <svg
+              id="menu-bar-icon-id"
+              class="menu-bar-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 448 512"
+            >
+              <path
+                d="M0 96C0 78.3 14.3 64 32 64l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 128C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32l384 0c17.7 0 32 14.3 32 32s-14.3 32-32 32L32 288c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32L32 448c-17.7 0-32-14.3-32-32s14.3-32 32-32l384 0c17.7 0 32 14.3 32 32z"
+              />
+            </svg>
+            <div id="header-title">
+              <h1>Welcome to Apollonia Dental Management!</h1>
+            </div>
+          </div>
+          <div class="home-default">
+            <p>This is an example of a dynamic EJS page.</p>
+          </div>
+          <div id="main-content" style="display: none"></div>
+        </div>
+      </div>
+      <div class="footer">
+        © <span class="">2024</span> Luu Vu. All rights reserved.
+      </div>
+    </div>
+    <script>
+      const menuBarIconId = document.getElementById('menu-bar-icon-id');
+      const menuBarOptionId = document.getElementById('menu-bar-option-id');
+      const contentWrappedId = document.getElementById('content-wrapped-id');
+
+      menuBarIconId.addEventListener('click', () => {
+        if (menuBarOptionId.style.display === 'block') {
+          menuBarOptionId.style.display = 'none';
+          contentWrappedId.classList.remove('grid-active');
+        } else {
+          menuBarOptionId.style.display = 'block';
+          contentWrappedId.classList.add('grid-active');
+        }
+      });
+
+      async function loadContent(pageName) {
+        try {
+          const response = await fetch(`/${pageName}`);
+          console.log('pageName', pageName);
+          const content = await response.text();
+          document.getElementById('main-content').innerHTML = content;
+          document.getElementById('main-content').style.display = 'block';
+          document.querySelector('.home-default').style.display = 'none';
+        } catch (error) {
+          console.error('Error loading content:', error);
+        }
+      }
+
+      function homePage() {
+        document.getElementById('main-content').innerHTML = '';
+        document.getElementById('main-content').style.display = 'none';
+        document.querySelector('.home-default').style.display = 'block';
+      }
+    </script>
+  </body>
+</html>

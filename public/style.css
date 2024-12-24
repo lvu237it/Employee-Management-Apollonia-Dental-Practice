@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+CU:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Playwrite+DK+Uloopet:wght@100..400&display=swap');
+
+#logo-Apollonia {
+  font-family: 'Playwrite CU', sans-serif;
+  text-align: center;
+  color: rgb(30, 185, 247);
+  font-weight: 800;
+  font-size: 40px;
+}
+
+html,
+body {
+  font-family: 'Lora', sans-serif;
+  background-color: #e0f7fa;
+  height: 100%;
+}
+
+.home-default {
+  display: block;
+}
+
+h1 {
+  color: white;
+  margin: 10px;
+  font-family: 'Playwrite CU', sans-serif;
+}
+
+.container {
+  margin: 10px auto;
+}
+
+.content-wrapped {
+  display: flex;
+}
+
+.grid-active {
+  display: grid;
+  grid-template-columns: 250px 1fr; /* Điều chỉnh kích thước của cột menu và nội dung chính */
+  grid-gap: 10px; /* Khoảng cách giữa các phần tử */
+}
+
+.main-wrapped {
+  width: 100%;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 50px 1fr;
+  background-color: rgb(35, 229, 209);
+}
+
+#menu-bar-icon-id {
+  margin: auto 10px;
+}
+
+#header-title {
+  margin: auto 10px;
+  text-align: right;
+}
+
+.menu-bar-option {
+  display: none;
+  height: 100vh; /* Đặt chiều cao 100% chiều cao màn hình */
+  background-color: #2b3a40;
+  overflow-y: auto; /* Thêm thanh cuộn nếu nội dung dài */
+}
+
+.menu-bar-option-ul {
+  padding: 0;
+  list-style: none;
+}
+
+.menu-bar-option-ul li {
+  cursor: pointer;
+  line-height: 30px;
+  padding: 15px 20px;
+  color: white;
+}
+
+.menu-bar-option-ul li:hover {
+  background-color: #2e86c1; /* Màu nền khi hover */
+}
+
+.menu-bar-icon {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.footer {
+  text-align: center;
+}
