@@ -12,7 +12,7 @@
 html,
 body {
   font-family: 'Lora', sans-serif;
-  background-color: #e0f7fa;
+  background-color: rgb(212, 242, 246);
   height: 100%;
 }
 
@@ -61,7 +61,7 @@ h1 {
 
 .menu-bar-option {
   display: none;
-  height: 100vh; /* Đặt chiều cao 100% chiều cao màn hình */
+  height: 100%; /* Đặt chiều cao 100% chiều cao màn hình */
   background-color: #2b3a40;
   overflow-y: auto; /* Thêm thanh cuộn nếu nội dung dài */
 }
@@ -90,4 +90,88 @@ h1 {
 
 .footer {
   text-align: center;
+}
+
+.customer-title,
+.appointment-title,
+.department-title,
+.employee-title {
+  background: white;
+  color: rgb(84, 91, 98);
+  padding: 5px 10px;
+  margin: 10px 0px;
+}
+
+.customer-data,
+.appointment-data,
+.department-data,
+.employee-data {
+  background: white;
+  color: rgb(84, 91, 98);
+}
+
+.register-appointment-form {
+  width: 500px;
+  margin: auto;
+  padding: 10px;
+  text-align: center;
+}
+
+.appointment-wrapper-form-title {
+  margin: 10px 0;
+}
+
+.appointment-register-form-title {
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.appointment-input-class-style {
+  width: 250px;
+  border: 0.5px solid gray;
+  border-radius: 4px;
+  padding: 8px 5px;
+}
+
+.button-register-appointment,
+.appointment-button-find-by-duration {
+  padding: 8px 12px;
+  background-color: white;
+  cursor: pointer;
+  color: rgb(38, 214, 129);
+  margin: 10px;
+  border-radius: 4px;
+  border: 0.5px solid rgb(38, 214, 129);
+  transition: 0.2s ease-in-out;
+}
+
+.button-register-appointment:hover {
+  background-color: rgb(38, 214, 129);
+  cursor: pointer;
+  color: white;
+}
+
+.button-show-appointment-list {
+  padding: 8px 12px;
+  background-color: white;
+  color: rgb(38, 214, 129);
+  cursor: pointer;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border: 0.5px solid rgb(38, 214, 129);
+  transition: 0.2s ease-in-out;
+}
+
+.button-show-appointment-list:hover {
+  background-color: rgb(38, 214, 129);
+  color: white;
+  cursor: pointer;
+  border: 0.5px solid rgb(38, 214, 129);
+}
+
+.appointment-input-class-date {
+  width: 150px;
+  border: 0.5px solid gray;
+  border-radius: 4px;
+  padding: 8px 5px;
 }

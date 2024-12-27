@@ -1,1 +1,35 @@
-<div class="">Customer</div>
+<div class="customer-wrapper">
+  <div class="customer-title">
+    <h2>Customer management</h2>
+  </div>
+  <div class="customer-data">
+    <div class="">Customer list</div>
+    <hr />
+    <div class="find-customer">
+      Find by name or phone number
+      <input type="text number" />
+      <button>Find</button>
+      <button>Add new</button>
+    </div>
+    <div class="customer-data-details">
+      <table>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Age</th>
+          <th>Phone number</th>
+          <th>Email</th>
+        </tr>
+        <% customers.forEach(customer => { %>
+        <tr>
+          <td><%= customer.firstName %></td>
+          <td><%= customer.lastName %></td>
+          <td><%= customer.age %></td>
+          <td><%= customer.contactInfo.phone %></td>
+          <td><%= customer.contactInfo.email %></td>
+        </tr>
+        <% });%>
+      </table>
+    </div>
+  </div>
+</div>

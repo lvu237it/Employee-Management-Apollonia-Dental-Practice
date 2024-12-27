@@ -15,6 +15,7 @@
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -63,6 +64,7 @@
         © <span class="">2024</span> Luu Vu. All rights reserved.
       </div>
     </div>
+
     <script>
       const menuBarIconId = document.getElementById('menu-bar-icon-id');
       const menuBarOptionId = document.getElementById('menu-bar-option-id');
@@ -95,6 +97,60 @@
         document.getElementById('main-content').innerHTML = '';
         document.getElementById('main-content').style.display = 'none';
         document.querySelector('.home-default').style.display = 'block';
+      }
+
+      function createNewAppointment() {
+        let firstName = document.getElementById('firstName').value;
+        let lastName = document.getElementById('lastName').value;
+        let age = parseInt(document.getElementById('age').value, 10);
+        let phone = document.getElementById('phone').value;
+        let email = document.getElementById('email').value;
+        let appointmentDate = document.getElementById('appointmentDate').value;
+        let notes = document.getElementById('notes').value;
+
+        // Basic validation
+        if (
+          !firstName ||
+          !lastName ||
+          !age ||
+          !phone ||
+          !email ||
+          !appointmentDate
+        ) {
+          alert('Please fill out all required fields.');
+          return;
+        }
+        // Ajax request
+        $.ajax({
+          url: 'http://localhost:3000/appointments/create-new-appointment',
+          type: 'POST',
+          data: {
+            firstName: firstName,
+            lastName: lastName,
+            age: age,
+            phone: phone,
+            email: email,
+            appointmentDate: appointmentDate,
+            notes: notes,
+          },
+          async: false,
+          success: function () {
+            // Clear form
+            document.getElementById('firstName').value = null;
+            document.getElementById('lastName').value = null;
+            document.getElementById('age').value = null;
+            document.getElementById('phone').value = null;
+            document.getElementById('email').value = null;
+            document.getElementById('appointmentDate').value = null;
+            document.getElementById('notes').value = null;
+
+            alert('Create appointment successfully!');
+          },
+          error: function () {
+            alert('Failed to create appointment. Please try again later.');
+            console.log('Error in Ajax request for creating appointment');
+          },
+        });
       }
     </script>
   </body>

@@ -20,14 +20,22 @@ const appointmentSchema = new mongoose.Schema({
   employee: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Employee',
-    required: true,
   },
   customer: {
     type: mongoose.SchemaTypes.ObjectId,
     ref: 'Customer',
     required: true,
   },
+  appointmentDate: {
+    type: Date,
+    required: true,
+  },
   notes: String,
+  status: {
+    type: String,
+    enum: ['Pending', 'Completed'],
+    default: 'Pending',
+  },
   createdAt: {
     type: Date,
     required: true,

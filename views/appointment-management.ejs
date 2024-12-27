@@ -1,1 +1,87 @@
-<div class="">Appointment</div>
+<div class="appointment-wrapper">
+  <div class="appointment-title">
+    <h2>Appointment management</h2>
+  </div>
+  <div class="appointment-data">
+    <div class="register-appointment-form">
+      <h3>Register an appointment</h3>
+      <div class="appointment-wrapper-form-title">
+        <div class="appointment-register-form-title">(*) First name</div>
+        <input
+          class="appointment-input-class-style"
+          type="text"
+          name="firstName"
+          id="firstName"
+        />
+      </div>
+      <div class="appointment-wrapper-form-title">
+        <div class="appointment-register-form-title">(*) Last name</div>
+        <input
+          class="appointment-input-class-style"
+          type="text"
+          name="lastName"
+          id="lastName"
+        />
+      </div>
+      <div class="appointment-wrapper-form-title">
+        <div class="appointment-register-form-title">(*) Age</div>
+        <input
+          class="appointment-input-class-style"
+          type="number"
+          name="age"
+          id="age"
+        />
+      </div>
+      <div class="appointment-wrapper-form-title">
+        <div class="appointment-register-form-title">(*) Phone number</div>
+        <input
+          class="appointment-input-class-style"
+          type="text"
+          name="phone"
+          id="phone"
+        />
+      </div>
+      <div class="appointment-wrapper-form-title">
+        <div class="appointment-register-form-title">(*) Email</div>
+        <input
+          class="appointment-input-class-style"
+          type="email"
+          name="email"
+          id="email"
+        />
+      </div>
+      <div class="appointment-wrapper-form-title">
+        <div class="appointment-register-form-title">(*) Appointment date</div>
+        <input
+          class="appointment-input-class-style"
+          type="date"
+          name="appointmentDate"
+          id="appointmentDate"
+        />
+      </div>
+      <div class="appointment-wrapper-form-title">
+        <div class="appointment-register-form-title">Notes</div>
+        <input
+          class="appointment-input-class-style"
+          type="text"
+          name="notes"
+          id="notes"
+        />
+      </div>
+      <div class="">
+        <button
+          onclick="createNewAppointment();"
+          class="button-register-appointment"
+        >
+          Register
+        </button>
+      </div>
+
+      <div class="">
+        <button type="button" class="button-show-appointment-list">
+          Show appointment list
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -4,6 +4,7 @@ const morgan = require('morgan');
 const AppError = require('./utils/appError');
 const connectToDatabase = require('./database/connection');
 const path = require('path');
+const cors = require('cors');
 
 // Load environment variables from .env file dotenv.config();
 dotenv.config();
@@ -11,6 +12,10 @@ dotenv.config();
 const app = express();
 const employeeRouter = require('./routes/employeeRoute');
 const departmentRouter = require('./routes/departmentRoute');
+const customerRouter = require('./routes/customerRoute');
+const appointmentRouter = require('./routes/appointmentRoute');
+
+const { default: axios } = require('axios');
 
 //Middleware & Static files
 app.use(express.urlencoded({ extended: true })); //this will help to get submitted data of form in req.body obj
@@ -30,9 +35,13 @@ if (process.env.NODE_ENV === 'production') {
   console.log('production environment mode');
 }
 
+app.use(cors());
+
 //Import routers
 app.use('/employees', employeeRouter);
 app.use('/departments', departmentRouter);
+app.use('/customers', customerRouter);
+app.use('/appointments', appointmentRouter);
 
 //Views
 app.set('view engine', 'ejs');
@@ -45,21 +54,50 @@ connectToDatabase();
 //Routing handlers
 app.use('/home', (req, res) => res.render('home'));
 
+// -------------Employee--------------------
 app.get('/employee-management', (req, res) =>
   res.render('employee-management')
 );
 
+// -------------Department--------------------
 app.get('/department-management', (req, res) =>
   res.render('department-management')
 );
 
-app.get('/customer-management', (req, res) =>
-  res.render('customer-management')
-);
+// -------------Customer--------------------
+app.get('/customer-management', async (req, res) => {
+  try {
+    //Fetch customer data from API
+    const customers = await fetCustomerFromAPI();
+    res.render('customer-management', { customers });
+  } catch (error) {
+    res.status(500).send('Error fetching customer data');
+  }
+});
 
+async function fetCustomerFromAPI() {
+  const customers = await axios.get('http://localhost:3000/customers');
+  return customers.data;
+}
+
+// --------------Appointment----------------
 app.get('/appointment-management', (req, res) =>
   res.render('appointment-management')
 );
+
+app.get('/show-appointment-list', async (req, res) => {
+  try {
+    const appointments = await fetAppointmentFromAPI();
+    res.render('show-appointment-list', { appointments });
+  } catch (error) {
+    res.status(500).send('Error fetching appointment data', error);
+  }
+});
+
+async function fetAppointmentFromAPI() {
+  const appointments = await axios.get('http://localhost:3000/appointments');
+  return appointments.data;
+}
 
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));

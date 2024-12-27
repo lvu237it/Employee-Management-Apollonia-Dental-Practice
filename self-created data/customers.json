@@ -1,0 +1,38 @@
+[
+  {
+    "firstName": "John",
+    "lastName": "Doe",
+    "age": 28,
+    "contactInfo": {
+      "phone": "123-456-7890",
+      "email": "john.doe@example.com"
+    }
+  },
+  {
+    "firstName": "Jane",
+    "lastName": "Smith",
+    "age": 34,
+    "contactInfo": {
+      "phone": "234-567-8901",
+      "email": "jane.smith@example.com"
+    }
+  },
+  {
+    "firstName": "Alice",
+    "lastName": "Johnson",
+    "age": 22,
+    "contactInfo": {
+      "phone": "345-678-9012",
+      "email": "alice.johnson@example.com"
+    }
+  },
+  {
+    "firstName": "Bob",
+    "lastName": "Brown",
+    "age": 45,
+    "contactInfo": {
+      "phone": "456-789-0123",
+      "email": "bob.brown@example.com"
+    }
+  }
+]
