@@ -95,7 +95,8 @@ h1 {
 .customer-title,
 .appointment-title,
 .department-title,
-.employee-title {
+.employee-title,
+.appointment-list-wrapper {
   background: white;
   color: rgb(84, 91, 98);
   padding: 5px 10px;
@@ -110,11 +111,21 @@ h1 {
   color: rgb(84, 91, 98);
 }
 
-.register-appointment-form {
-  width: 500px;
+.appointment-data {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.register-appointment-form,
+.appointment-for-available-customer {
+  width: 350px;
   margin: auto;
   padding: 10px;
   text-align: center;
+}
+
+.appointment-list-wrapper {
+  display: none;
 }
 
 .appointment-wrapper-form-title {
@@ -126,11 +137,22 @@ h1 {
   margin-bottom: 10px;
 }
 
+.appointment-select-option-style {
+  width: 261.6px;
+  border: 0.5px solid gray;
+  border-radius: 4px;
+  padding: 8px 5px;
+}
+
 .appointment-input-class-style {
   width: 250px;
   border: 0.5px solid gray;
   border-radius: 4px;
   padding: 8px 5px;
+}
+
+.appointment-span-class {
+  color: red;
 }
 
 .button-register-appointment,
@@ -151,12 +173,21 @@ h1 {
   color: white;
 }
 
+.button-show-appointment-list-wrapper {
+  display: grid;
+  background: white;
+  color: rgb(84, 91, 98);
+}
+
 .button-show-appointment-list {
+  grid-template-columns: 1fr;
+  /* width: 500px; */
+  margin: auto;
   padding: 8px 12px;
   background-color: white;
   color: rgb(38, 214, 129);
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   border-radius: 4px;
   border: 0.5px solid rgb(38, 214, 129);
   transition: 0.2s ease-in-out;

@@ -1,87 +1,238 @@
+<!-- <script refer>
+  let appointmentList = <%- JSON.stringify(appointments) %>;
+
+  function showAppointmentList(){
+    console.log('ok')
+    console.log('appointmentList',appointments)
+  }
+</script> -->
+
 <div class="appointment-wrapper">
   <div class="appointment-title">
     <h2>Appointment management</h2>
   </div>
-  <div class="appointment-data">
-    <div class="register-appointment-form">
-      <h3>Register an appointment</h3>
-      <div class="appointment-wrapper-form-title">
-        <div class="appointment-register-form-title">(*) First name</div>
-        <input
-          class="appointment-input-class-style"
-          type="text"
-          name="firstName"
-          id="firstName"
-        />
-      </div>
-      <div class="appointment-wrapper-form-title">
-        <div class="appointment-register-form-title">(*) Last name</div>
-        <input
-          class="appointment-input-class-style"
-          type="text"
-          name="lastName"
-          id="lastName"
-        />
-      </div>
-      <div class="appointment-wrapper-form-title">
-        <div class="appointment-register-form-title">(*) Age</div>
-        <input
-          class="appointment-input-class-style"
-          type="number"
-          name="age"
-          id="age"
-        />
-      </div>
-      <div class="appointment-wrapper-form-title">
-        <div class="appointment-register-form-title">(*) Phone number</div>
-        <input
-          class="appointment-input-class-style"
-          type="text"
-          name="phone"
-          id="phone"
-        />
-      </div>
-      <div class="appointment-wrapper-form-title">
-        <div class="appointment-register-form-title">(*) Email</div>
-        <input
-          class="appointment-input-class-style"
-          type="email"
-          name="email"
-          id="email"
-        />
-      </div>
-      <div class="appointment-wrapper-form-title">
-        <div class="appointment-register-form-title">(*) Appointment date</div>
-        <input
-          class="appointment-input-class-style"
-          type="date"
-          name="appointmentDate"
-          id="appointmentDate"
-        />
-      </div>
-      <div class="appointment-wrapper-form-title">
-        <div class="appointment-register-form-title">Notes</div>
-        <input
-          class="appointment-input-class-style"
-          type="text"
-          name="notes"
-          id="notes"
-        />
-      </div>
-      <div class="">
-        <button
-          onclick="createNewAppointment();"
-          class="button-register-appointment"
-        >
-          Register
-        </button>
-      </div>
 
+  <div
+    id="appointment-list-wrapper"
+    class="appointment-list-wrapper"
+    style="display: none"
+  >
+    <button onclick="backToRegisterAnAppointment()">
+      Back to register an appointment
+    </button>
+    <hr />
+    <div class="appointment-time-table">
+      <h4>Time table of employees</h4>
+      <table>
+        <tr>
+          <th>No.</th>
+          <th>Day in week</th>
+          <th>Duration</th>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </table>
+    </div>
+    <div class="appointment-patient-list">
+      <h4>List of registered patients</h4>
+      Find by a duration
       <div class="">
-        <button type="button" class="button-show-appointment-list">
-          Show appointment list
-        </button>
+        From <input type="date" class="appointment-input-class-date" /> To
+        <input type="date" class="appointment-input-class-date" />
       </div>
+      <button class="appointment-button-find-by-duration">Find</button>
+      <table>
+        <tr>
+          <th>No.</th>
+          <th>Full name</th>
+          <th>Age</th>
+          <th>Phone number</th>
+          <th>Email</th>
+          <th>Appointment date</th>
+          <th>Department</th>
+          <th>Employee</th>
+          <th>Status</th>
+          <th>Notes</th>
+        </tr>
+        <% appointments.forEach((appointment) => { %>
+        <tr>
+          <td>1</td>
+          <td>
+            <%= appointment.customer.firstName %> <%=
+            appointment.customer.lastName %>
+          </td>
+          <td><%= appointment.customer.age %></td>
+          <td><%= appointment.customer.contactInfo.phone %></td>
+          <td><%= appointment.customer.contactInfo.email %></td>
+          <td><%= appointment.appointmentDate %></td>
+          <td></td>
+          <td></td>
+          <td><%= appointment.status %></td>
+          <td><%= appointment.notes %></td>
+        </tr>
+        <% }); %>
+      </table>
+    </div>
+  </div>
+
+  <div id="appointment-initial-page" class="appointment-initial-page">
+    <div class="appointment-data">
+      <!-- Register for available customer -->
+      <div class="appointment-for-available-customer">
+        <h3>Register for available customer</h3>
+        <div class="appointment-wrapper-form-title">
+          <div class="appointment-register-form-title">
+            (<span class="appointment-span-class">*</span>) Email
+          </div>
+          <!-- <input
+            class="appointment-input-class-style"
+            type="email"
+            name="email"
+            id="email"
+          /> -->
+          <select
+            class="appointment-select-option-style"
+            name="available-customer-email-select"
+            id="availableCustomerEmailSelect"
+          >
+            <option value="">--- Choose an email ---</option>
+            <% customers.forEach(customer => { %>
+            <option value="<%= customer.contactInfo.email %>">
+              <%= customer.contactInfo.email %>
+            </option>
+            <% });%>
+          </select>
+        </div>
+
+        <div class="appointment-wrapper-form-title">
+          <div class="appointment-register-form-title">
+            (<span class="appointment-span-class">*</span>) Appointment date
+          </div>
+          <input
+            class="appointment-input-class-style"
+            type="date"
+            name="available-customer-appointmentDate"
+            id="availableCustomerAppointmentDate"
+          />
+        </div>
+
+        <div class="appointment-wrapper-form-title">
+          <div class="appointment-register-form-title">Notes</div>
+          <input
+            class="appointment-input-class-style"
+            type="text"
+            name="available-customer-notes"
+            id="availableCustomerNotes"
+          />
+        </div>
+
+        <div class="">
+          <button
+            onclick="createAppointmentWithAvailableCustomer()"
+            class="button-register-appointment"
+          >
+            Register
+          </button>
+        </div>
+      </div>
+      <!-- Create new customer and egister new appointment -->
+      <div class="register-appointment-form">
+        <h3>Register new appointment</h3>
+        <div class="appointment-wrapper-form-title">
+          <div class="appointment-register-form-title">
+            (<span class="appointment-span-class">*</span>) First name
+          </div>
+          <input
+            class="appointment-input-class-style"
+            type="text"
+            name="firstName"
+            id="firstName"
+          />
+        </div>
+        <div class="appointment-wrapper-form-title">
+          <div class="appointment-register-form-title">
+            (<span class="appointment-span-class">*</span>) Last name
+          </div>
+          <input
+            class="appointment-input-class-style"
+            type="text"
+            name="lastName"
+            id="lastName"
+          />
+        </div>
+        <div class="appointment-wrapper-form-title">
+          <div class="appointment-register-form-title">
+            (<span class="appointment-span-class">*</span>) Age
+          </div>
+          <input
+            class="appointment-input-class-style"
+            type="number"
+            name="age"
+            id="age"
+          />
+        </div>
+        <div class="appointment-wrapper-form-title">
+          <div class="appointment-register-form-title">
+            (<span class="appointment-span-class">*</span>) Phone number
+          </div>
+          <input
+            class="appointment-input-class-style"
+            type="text"
+            name="phone"
+            id="phone"
+          />
+        </div>
+        <div class="appointment-wrapper-form-title">
+          <div class="appointment-register-form-title">
+            (<span class="appointment-span-class">*</span>) Email
+          </div>
+          <input
+            class="appointment-input-class-style"
+            type="email"
+            name="email"
+            id="email"
+          />
+        </div>
+        <div class="appointment-wrapper-form-title">
+          <div class="appointment-register-form-title">
+            (<span class="appointment-span-class">*</span>) Appointment date
+          </div>
+          <input
+            class="appointment-input-class-style"
+            type="date"
+            name="appointmentDate"
+            id="appointmentDate"
+          />
+        </div>
+        <div class="appointment-wrapper-form-title">
+          <div class="appointment-register-form-title">Notes</div>
+          <input
+            class="appointment-input-class-style"
+            type="text"
+            name="notes"
+            id="notes"
+          />
+        </div>
+        <div class="">
+          <button
+            onclick="createNewAppointment();"
+            class="button-register-appointment"
+          >
+            Register
+          </button>
+        </div>
+      </div>
+    </div>
+    <div
+      onclick="showAppointmentList();"
+      class="button-show-appointment-list-wrapper"
+    >
+      <button class="button-show-appointment-list">
+        Show appointment list
+      </button>
     </div>
   </div>
 </div>

@@ -99,6 +99,51 @@
         document.querySelector('.home-default').style.display = 'block';
       }
 
+      function createAppointmentWithAvailableCustomer() {
+        let email = document.getElementById(
+          'availableCustomerEmailSelect'
+        ).value;
+        let appointmentDate = document.getElementById(
+          'availableCustomerAppointmentDate'
+        ).value;
+        let notes = document.getElementById('availableCustomerNotes').value;
+
+        console.log(email);
+        console.log(appointmentDate);
+        console.log(notes);
+
+        // Basic validation
+        if (!email || !appointmentDate) {
+          alert('Please fill out all required fields.');
+          return;
+        }
+
+        // Ajax request
+        $.ajax({
+          url: 'http://localhost:3000/appointments/create-appointment-with-available-customer',
+          type: 'POST',
+          data: {
+            email: email,
+            appointmentDate: appointmentDate,
+            notes: notes,
+          },
+          async: false,
+          success: function (response) {
+            alert('Create appointment successfully!');
+            // Clear form
+            document.getElementById('availableCustomerEmailSelect').value =
+              null;
+            document.getElementById('availableCustomerAppointmentDate').value =
+              null;
+            document.getElementById('availableCustomerNotes').value = null;
+          },
+          error: function () {
+            alert('Failed to create appointment. Please try again later.');
+            console.log('Error in Ajax request for creating appointment');
+          },
+        });
+      }
+
       function createNewAppointment() {
         let firstName = document.getElementById('firstName').value;
         let lastName = document.getElementById('lastName').value;
@@ -134,23 +179,60 @@
             notes: notes,
           },
           async: false,
-          success: function () {
-            // Clear form
-            document.getElementById('firstName').value = null;
-            document.getElementById('lastName').value = null;
-            document.getElementById('age').value = null;
-            document.getElementById('phone').value = null;
-            document.getElementById('email').value = null;
-            document.getElementById('appointmentDate').value = null;
-            document.getElementById('notes').value = null;
-
-            alert('Create appointment successfully!');
+          success: function (response) {
+            if (
+              response.message ===
+              'This phone number is exist. Please input another.'
+            ) {
+              //invalid Phone number
+              alert('Invalid phone number! Please input again.');
+              document.getElementById('phone').value = null;
+            } else if (
+              response.message === 'This email is exist. Please input another.'
+            ) {
+              //invalid Email
+              alert('Email already exists! Please input again.');
+              document.getElementById('email').value = null;
+            } else if (
+              response.message === 'Email is invalid. Please input again.'
+            ) {
+              alert('Invalid email! Please input again.');
+              document.getElementById('email').value = null;
+            } else {
+              //Input valid
+              alert('Create appointment successfully!');
+              // Clear form
+              document.getElementById('firstName').value = null;
+              document.getElementById('lastName').value = null;
+              document.getElementById('age').value = null;
+              document.getElementById('phone').value = null;
+              document.getElementById('email').value = null;
+              document.getElementById('appointmentDate').value = null;
+              document.getElementById('notes').value = null;
+            }
           },
           error: function () {
             alert('Failed to create appointment. Please try again later.');
             console.log('Error in Ajax request for creating appointment');
           },
         });
+      }
+
+      function showAppointmentList() {
+        //Using appointmens list to show appointment
+        const appointmentListWrapper = document.getElementById(
+          'appointment-list-wrapper'
+        );
+        const appointmentInitialPage = document.getElementById(
+          'appointment-initial-page'
+        );
+
+        appointmentInitialPage.style.display = 'none';
+        appointmentListWrapper.style.display = 'block';
+      }
+
+      function backToRegisterAnAppointment() {
+        loadContent('appointment-management');
       }
     </script>
   </body>

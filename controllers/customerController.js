@@ -11,17 +11,40 @@ exports.getAllCustomers = async (req, res) => {
 
 exports.checkCustomerEmailIsExist = async (email) => {
   try {
-    const customers = await Customer.find({});
-    console.log('customer', customers);
-
-    customers.forEach((customer) => {
-      if (customer.contactInfo.email.toString() === email.toString()) {
-        return true;
-      }
-    });
+    const customer = await Customer.findOne({ 'contactInfo.email': email });
+    if (customer) {
+      return true;
+    }
 
     return false;
   } catch (err) {
-    console.log(err);
+    throw new Error('Error checking customer email');
+  }
+};
+
+exports.checkCustomerPhoneNumberIsExist = async (phoneNumber) => {
+  try {
+    const customer = await Customer.findOne({
+      'contactInfo.phone': phoneNumber,
+    });
+    if (customer) {
+      return true;
+    }
+
+    return false;
+  } catch (err) {
+    throw new Error('Error checking customer phone number');
+  }
+};
+
+exports.findCustomerByEmail = async (email) => {
+  try {
+    const result = Customer.findOne({ 'contactInfo.email': email });
+    if (result) {
+      return result;
+    }
+    return null;
+  } catch (error) {
+    throw new Error('Error finding customer by email');
   }
 };

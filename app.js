@@ -81,18 +81,33 @@ async function fetCustomerFromAPI() {
 }
 
 // --------------Appointment----------------
-app.get('/appointment-management', (req, res) =>
-  res.render('appointment-management')
-);
-
-app.get('/show-appointment-list', async (req, res) => {
+app.get('/appointment-management', async (req, res) => {
   try {
-    const appointments = await fetAppointmentFromAPI();
-    res.render('show-appointment-list', { appointments });
+    const customers = await fetCustomerFromAPI();
+    const appointments = await fetAppointmentWithPopulatedCustomer();
+
+    res.render('appointment-management', { customers, appointments });
   } catch (error) {
-    res.status(500).send('Error fetching appointment data', error);
+    res.status(500).send('Error fetching appointment data');
   }
 });
+
+// app.get('/show-appointment-list', async (req, res) => {
+//   try {
+//     const appointments = await fetAppointmentFromAPI();
+//     console.log('appointment', appointments);
+//     res.render('show-appointment-list', { appointments });
+//   } catch (error) {
+//     res.status(500).send('Error fetching appointment data', error);
+//   }
+// });
+
+async function fetAppointmentWithPopulatedCustomer() {
+  const appointments = await axios.get(
+    'http://localhost:3000/appointments/populated-customer'
+  );
+  return appointments.data;
+}
 
 async function fetAppointmentFromAPI() {
   const appointments = await axios.get('http://localhost:3000/appointments');
